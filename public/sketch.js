@@ -1,6 +1,6 @@
 class Board{
     constructor(){
-        this.speed = "insane"
+        this.speed = 1
     }
 }
 
@@ -79,7 +79,7 @@ let gCols = 65
 let rDiv = 0
 let isMouseDown = false
 let stack = []
-let speedDict = { instant: 0, insane: 50, fast: 200, medium: 400 }
+let speedDict = { instant: 0, insane: 50, fast: 200, medium: 1000 }
 
 function setup() {
     board = new Board()
@@ -114,39 +114,48 @@ function cellMouseOver(cell){
 function GenMaze(name){
     if(name == "recursive_division"){
         clearWalls()
-        RecursiveDivision(0, 0, gRows - 1, gCols - 1)
+        sleep(board.speed).then(function(){
+            RecursiveDivision(0, 0, gRows - 1, gCols - 1)
+            sleep(board.speed).then(function(){
+                var i = 0
+                StackCellDisplay(i)
+            })
+        })
+    }
+    if(name == "randomized_prim"){
+        clearWalls()
+        RandomizedPrim()
         var i = 0
-        StackCellDisplay(i, board.speed)
-
+        GridUpdate(i)
     }
 }
-
-function StackCellDisplay(i, speed){
-    if(speed == "instant"){
+var a = 0
+function StackCellDisplay(i){
+    if(board.speed == 0){
         stack.forEach(function(cell){
             cell.update()
         })
     } else{
         stack[i].update()
         if(++i < stack.length){
-            setTimeout(function(){
+            sleep(board.speed).then(function(){
                 StackCellDisplay(i)
-            }, speedDict[`${speed}`])
+            })
         }
     }
 }
 
-function GridUpdate(i, speed){
-    if(speed == "instant"){
+function GridUpdate(i){
+    if(board.speed == 0){
         grid.cells.forEach(function(cell){
             cell.update()
         })
     } else{
         grid.cells[i].update()
         if(++i < grid.cells.length){
-            setTimeout(function(){
+            sleep(board.speed).then(function(){
                 GridUpdate(i)
-            }, speedDict[`${speed}`])
+            })
         }
     }
 }
@@ -217,7 +226,7 @@ function randomInt(min, max) { // min and max included
 }
 
   //orientation 0 means vertical, 1 means horizontal
-
+//recursive division
 function RecursiveDivision(from_row, from_col, to_row, to_col){
     var width = to_col - from_col
     var height = to_row - from_row
@@ -299,4 +308,15 @@ function RecursiveDivision(from_row, from_col, to_row, to_col){
         RecursiveDivision(from_row, from_col, wallPlace - 1, to_col)
         RecursiveDivision(wallPlace + 1, from_col, to_row, to_col)
     }
+}
+
+function RandomizedPrim(){
+    var nodesToVisit = []
+    grid.cells.forEach(function(cell){
+        cell.isWall = true
+        cell.update()
+    })
+    startCell = randomInt(0, grid.cells.length)
+    stack.push(grid.cells[startCell])
+    // nodesToVisit.push(grid.cells[startCell])
 }
