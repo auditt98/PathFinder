@@ -9,9 +9,8 @@
   </head>
   <body>
     <div class="centered" data-intro='Hello step one!' data-position="auto" data-title="Xin chào :)">
-
-    </div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+</div>
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <div class="navbar-brand" href="#">PathFinder</div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,12 +18,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-3 mb-lg-0">
-            <!-- <li class="nav-item">
-              <div class="btn btn-outline-primary" style="margin: 3px;">Start</div>
-            </li>
-            <li class="nav-item">
-              <div class="btn btn-outline-primary" style="margin: 3px;">Stop</div>
-            </li> -->
             <li class="nav-item">
               <li class="nav-item dropdown">
                 <div class="dropdown-toggle btn btn-outline-primary mazeGenerator" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin: 3px;">
@@ -38,7 +31,7 @@
                   <li><div class="dropdown-item" onclick="GenMaze('randomized_prim')" style="cursor: default;">Randomized Prim</div></li>
                 </ul>
               </li>
-              <!-- <div class="btn btn-info text-white">Maze Generator</div> -->
+              
             </li>
             <li class="nav-item">
               <div class="btn btn-outline-danger clearWall" onclick="clearWalls()" style="margin: 3px;">Xóa</div>

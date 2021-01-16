@@ -72,20 +72,51 @@ class Cell{
 let board
 let grid
 let fps = 60
-let cWidth = 25
-let cHeight = 25
-let gRows = 28
-let gCols = 65
+let cWidth = 30
+let cHeight = 30
+let gRows
+let gCols
 let rDiv = 0
 let isMouseDown = false
 let stack = []
 let speedDict = { instant: 0, insane: 50, fast: 200, medium: 1000 }
 
 function setup() {
+    var navHeight = document.getElementById("navbar").clientHeight;
+    gRows = Math.floor((document.documentElement.clientHeight - navHeight) / cHeight);
+    gCols = Math.floor((document.documentElement.clientWidth) / cWidth);
     board = new Board()
     grid = new Grid()
     grid.draw();
 }
+
+function getViewport() {
+
+    var viewPortWidth;
+    var viewPortHeight;
+   
+    // the more standards compliant browsers (mozilla/netscape/opera/IE7) use window.innerWidth and window.innerHeight
+    if (typeof window.innerWidth != 'undefined') {
+      viewPortWidth = window.innerWidth,
+      viewPortHeight = window.innerHeight
+    }
+   
+   // IE6 in standards compliant mode (i.e. with a valid doctype as the first line in the document)
+    else if (typeof document.documentElement != 'undefined'
+    && typeof document.documentElement.clientWidth !=
+    'undefined' && document.documentElement.clientWidth != 0) {
+       viewPortWidth = document.documentElement.clientWidth,
+       viewPortHeight = document.documentElement.clientHeight
+    }
+   
+    // older versions of IE
+    else {
+      viewPortWidth = document.getElementsByTagName('body')[0].clientWidth,
+      viewPortHeight = document.getElementsByTagName('body')[0].clientHeight
+    }
+    return [viewPortWidth, viewPortHeight];
+}
+
 
 function runIntro(){
     introJs().setOptions({

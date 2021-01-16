@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <div class="navbar-brand" href="#">PathFinder</div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-3 mb-lg-0">
+          <li class="nav-item">
+            <li class="nav-item dropdown">
+              <div class="dropdown-toggle btn btn-outline-primary mazeGenerator" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin: 3px;">
+                Tạo mê cung
+              </div>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><div class="dropdown-item" onclick="GenMaze('recursive_division')" style="cursor: default;">Recursive division</div></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><div class="dropdown-item" onclick="GenMaze('recursive_backtracker')" style="cursor: default;">Recursive Backtracker</div></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><div class="dropdown-item" onclick="GenMaze('randomized_prim')" style="cursor: default;">Randomized Prim</div></li>
+              </ul>
+            </li>
+            
+          </li>
+          <li class="nav-item">
+            <div class="btn btn-outline-danger clearWall" onclick="clearWalls()" style="margin: 3px;">Xóa</div>
+          </li>
+          <li class="nav-item dropdown">
+            <div class="btn btn-outline-secondary dropdown-toggle speedChange" id="dropdownMenuButton" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin: 3px;">
+              Tốc độ
+            </div>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li><div class="dropdown-item" onclick="SetSpeed(100)" style="cursor: default;">Chậm</div></li>
+              <li><div class="dropdown-item" onclick="SetSpeed(60)" style="cursor: default;">Vừa</div></li>
+              <li><div class="dropdown-item" onclick="SetSpeed(5)" style="cursor: default;">Nhanh</div></li>
+              <li><div class="dropdown-item" onclick="SetSpeed(0)" style="cursor: default;">Tức thời</div></li>
+            </ul>
+          </li>
+
+        </ul>
+        <div class="d-flex flex-row-reverse">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="btn btn-light btn-github" style="margin: 3px;" target="_blank" href="https://github.com/auditt98/PathFinder"><img src="github_32.png"/></a>
+            </li>
+            <li class="nav-item">
+              <div class="btn btn-primary" style="margin: 3px;" onclick="runIntro()">Hướng dẫn</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
