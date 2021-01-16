@@ -21,7 +21,7 @@ class Grid{
                 cell.col = col
                 cell.row = row
                 this.cells[row * this.cols + col] = cell
-                curRow += `<td id="cell_${row}_${col}" data-col=${col} data-row=${row} class="cell" onmousedown="cellMouseDown(this)" onmouseover="cellMouseOver(this)"></td>`
+                curRow += `<td id="cell_${row}_${col}" data-col=${col} data-row=${row} class="cell" onmousedown="cellMouseDown(this)" ontouchstart="cellMouseDown(this)" ontouchmove="cellMouseOver(this)" onmouseover="cellMouseOver(this)"></td>`
             }
             tableHtml += curRow + "</tr>"
         }
@@ -88,33 +88,7 @@ function setup() {
     board = new Board()
     grid = new Grid()
     grid.draw();
-}
-
-function getViewport() {
-
-    var viewPortWidth;
-    var viewPortHeight;
-   
-    // the more standards compliant browsers (mozilla/netscape/opera/IE7) use window.innerWidth and window.innerHeight
-    if (typeof window.innerWidth != 'undefined') {
-      viewPortWidth = window.innerWidth,
-      viewPortHeight = window.innerHeight
-    }
-   
-   // IE6 in standards compliant mode (i.e. with a valid doctype as the first line in the document)
-    else if (typeof document.documentElement != 'undefined'
-    && typeof document.documentElement.clientWidth !=
-    'undefined' && document.documentElement.clientWidth != 0) {
-       viewPortWidth = document.documentElement.clientWidth,
-       viewPortHeight = document.documentElement.clientHeight
-    }
-   
-    // older versions of IE
-    else {
-      viewPortWidth = document.getElementsByTagName('body')[0].clientWidth,
-      viewPortHeight = document.getElementsByTagName('body')[0].clientHeight
-    }
-    return [viewPortWidth, viewPortHeight];
+    var tbl = document.getElementById("board")
 }
 
 
@@ -171,6 +145,10 @@ document.addEventListener('mouseup', e => {
     isMouseDown = false
 });
 
+document.addEventListener('touchend', e => {
+    isMouseDown = false
+});
+
 function cellClick(cell){
     grid.cells[parseInt(cell.dataset.row) * gCols + parseInt(cell.dataset.col)].click();
 }
@@ -180,7 +158,6 @@ function cellMouseDown(cell){
     if(isMouseDown){
         grid.cells[parseInt(cell.dataset.row) * gCols + parseInt(cell.dataset.col)].click();
     }
-    console.log("md on " + cell.dataset.row + " " + cell.dataset.col)
     return false;
 }
 
