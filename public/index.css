@@ -24,3 +24,12 @@ body {
     background-color: rgb(59,83,96);
 }
 
+.centered {
+    width: 0px;
+    length: 0px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    z-index: 999999 !important;
+  }

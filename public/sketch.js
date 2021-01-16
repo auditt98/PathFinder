@@ -87,6 +87,54 @@ function setup() {
     grid.draw();
 }
 
+function runIntro(){
+    introJs().setOptions({
+        steps: [{
+          title: 'Xin chào 👋',
+          intro: "Đây là chương trình mô phỏng các thuật toán tạo mê cung và tìm đường cùng với nhiều thứ khác hay ho khác 😊😊😊"
+        }, 
+        {
+          element: document.querySelector('.btn-github'),
+          title: "Link Github <img src='github_32.png' style='height: 25px; width: 25px;'/>",
+          intro: "Github cho project này nhé",
+          position: "left"
+        }, 
+        {
+            element: document.querySelector('.mazeGenerator'),
+            title: "Cách tạo mê cung",
+            intro: "Ở đây có thể chọn các thuật toán tạo mê cung khác nhau.",
+            position: "right"
+            
+        },
+        {
+            element: document.querySelector('.clearWall'),
+            title: "Xóa ô",
+            intro: "Giúp đưa bảng trở về trạng thái ban đầu.",
+            position: "bottom"
+            
+        },
+        {
+            element: document.querySelector('.speedChange'),
+            title: "Thay đổi tốc độ",
+            intro: "Bạn có thể chọn 1 trong 4 tốc độ mô phỏng sẵn có.",
+            position: "bottom"
+            
+        },
+        {
+            element: document.querySelector('#board'),
+            title: "Bảng",
+            intro: "Khu vực này là nơi mọi thứ diễn ra.",
+            position: "auto"
+            
+        }],
+        nextLabel: "Tiếp theo",
+        prevLabel: "Trước",
+        doneLabel: "Kết thúc",
+        scrollToElement: true,
+        tooltipClass: "introsize"
+      }).start();
+}
+
 setup();
 document.addEventListener('mouseup', e => {
     isMouseDown = false
@@ -158,6 +206,10 @@ function GridUpdate(i){
             })
         }
     }
+}
+
+function SetSpeed(speed){
+    board.speed = speed
 }
 
 function clearWalls(){
