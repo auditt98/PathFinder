@@ -33,3 +33,7 @@ body {
     /* bring your own prefixes */
     z-index: 999999 !important;
   }
+
+  .disable-dbl-tap-zoom {
+    touch-action: manipulation;
+  }
